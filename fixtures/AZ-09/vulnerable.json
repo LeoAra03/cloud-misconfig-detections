@@ -1,0 +1,21 @@
+{
+  "detection": "AZ-09",
+  "cloud": "azure",
+  "title": "VM OS disk without disk encryption set",
+  "resources": [
+    {
+      "type": "Microsoft.Compute/virtualMachines",
+      "name": "vm-db",
+      "id": "/subscriptions/88888888-8888-8888-8888-888888888888/resourceGroups/rg-prod/providers/Microsoft.Compute/virtualMachines/vm-db",
+      "properties": {
+        "storageProfile": {
+          "osDisk": {
+            "managedDisk": {
+              "storageAccountType": "Premium_LRS"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

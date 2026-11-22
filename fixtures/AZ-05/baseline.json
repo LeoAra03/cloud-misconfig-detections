@@ -1,0 +1,27 @@
+{
+  "detection": "AZ-05",
+  "cloud": "azure",
+  "title": "Audit-relevant resource without diagnostic setting",
+  "resources": [
+    {
+      "type": "Microsoft.Storage/storageaccounts",
+      "name": "storagelogs",
+      "id": "/subscriptions/44444444-4444-4444-4444-444444444444/resourceGroups/rg-prod/providers/Microsoft.Storage/storageaccounts/storagelogs",
+      "properties": {
+        "allowBlobPublicAccess": false,
+        "diagnosticSettings": [
+          {
+            "name": "diag-storagelogs",
+            "id": "/subscriptions/44444444-4444-4444-4444-444444444444/resourceGroups/rg-prod/providers/Microsoft.Storage/storageaccounts/storagelogs/providers/microsoft.insights/diagnosticsettings/diag-storagelogs",
+            "type": "Microsoft.Insights/diagnosticSettings",
+            "properties": {
+              "targetResourceId": "/subscriptions/44444444-4444-4444-4444-444444444444/resourceGroups/rg-prod/providers/Microsoft.Storage/storageaccounts/storagelogs",
+              "storageAccountId": "/subscriptions/44444444-4444-4444-4444-444444444444/resourceGroups/rg-prod/providers/Microsoft.Storage/storageaccounts/diagstorage",
+              "logs": [ { "category": "StorageRead", "enabled": true } ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

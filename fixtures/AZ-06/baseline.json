@@ -1,0 +1,36 @@
+{
+  "detection": "AZ-06",
+  "cloud": "azure",
+  "title": "Public IP attached to a VM with no NSG association",
+  "resources": [
+    {
+      "type": "Microsoft.Network/publicIPAddresses",
+      "name": "pip-vm",
+      "id": "/subscriptions/55555555-5555-5555-5555-555555555555/resourceGroups/rg-prod/providers/Microsoft.Network/publicIPAddresses/pip-vm",
+      "properties": {
+        "ipAddress": "203.0.113.24",
+        "ipConfiguration": {
+          "id": "/subscriptions/55555555-5555-5555-5555-555555555555/resourceGroups/rg-prod/providers/Microsoft.Network/networkInterfaces/nic-vm"
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Network/networkInterfaces",
+      "name": "nic-vm",
+      "id": "/subscriptions/55555555-5555-5555-5555-555555555555/resourceGroups/rg-prod/providers/Microsoft.Network/networkInterfaces/nic-vm",
+      "properties": {
+        "networkSecurityGroup": {
+          "id": "/subscriptions/55555555-5555-5555-5555-555555555555/resourceGroups/rg-prod/providers/Microsoft.Network/networkSecurityGroups/nsg-vm"
+        },
+        "virtualMachine": {
+          "id": "/subscriptions/55555555-5555-5555-5555-555555555555/resourceGroups/rg-prod/providers/Microsoft.Compute/virtualMachines/vm-web"
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Compute/virtualMachines",
+      "name": "vm-web",
+      "id": "/subscriptions/55555555-5555-5555-5555-555555555555/resourceGroups/rg-prod/providers/Microsoft.Compute/virtualMachines/vm-web"
+    }
+  ]
+}

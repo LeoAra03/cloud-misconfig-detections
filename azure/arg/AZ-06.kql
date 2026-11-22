@@ -1,0 +1,13 @@
+Resources
+| where type == "microsoft.network/publicipaddresses"
+| where isnotempty(properties.ipAddress)
+| mvexpand ipc = properties.ipConfigurations
+| extend nicId = tolower(ipc.id)
+| join kind=inner (
+    Resources
+    | where type == "microsoft.network/networkinterfaces"
+    | extend nicId = tolower(id)
+    | where isnull(properties.networkSecurityGroup)
+) on nicId
+| project publicIpId = id, publicIp = properties.ipAddress, nicId
+| order by publicIpId asc

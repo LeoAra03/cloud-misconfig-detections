@@ -1,0 +1,23 @@
+{
+  "properties": {
+    "displayName": "[AZ-08] Audit SQL servers with public network access enabled",
+    "description": "Audits Microsoft.Sql/servers where properties.publicNetworkAccess is Enabled. Mirrors azure/arg/AZ-08.kql. Known false positive: SQL servers intentionally exposed for legacy app migration (time-bound).",
+    "mode": "Indexed",
+    "metadata": {
+      "category": "SQL",
+      "detectionId": "AZ-08",
+      "severity": "medium",
+      "version": "1.0.0"
+    },
+    "parameters": {},
+    "policyRule": {
+      "if": {
+        "allOf": [
+          { "field": "type", "equals": "Microsoft.Sql/servers" },
+          { "field": "properties.publicNetworkAccess", "equals": "Enabled" }
+        ]
+      },
+      "then": { "effect": "audit" }
+    }
+  }
+}

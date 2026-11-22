@@ -1,0 +1,6 @@
+Resources
+| where type == "microsoft.compute/virtualmachines"
+| where isnull(properties.storageProfile.osDisk.managedDisk.diskEncryptionSet)
+   or isnull(properties.storageProfile.osDisk.managedDisk.diskEncryptionSet.id)
+| project id, name, properties.storageProfile.osDisk.managedDisk.storageAccountType
+| order by name asc

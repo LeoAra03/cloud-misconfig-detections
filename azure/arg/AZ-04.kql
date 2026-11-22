@@ -1,0 +1,5 @@
+Resources
+| where type == "microsoft.keyvault/vaults"
+| where properties.enableSoftDelete == false
+| project id, name, properties.enableSoftDelete, properties.provisioningState
+| order by name asc

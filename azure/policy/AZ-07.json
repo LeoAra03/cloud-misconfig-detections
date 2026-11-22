@@ -1,0 +1,23 @@
+{
+  "properties": {
+    "displayName": "[AZ-07] Audit App Service apps with HTTPS not enforced",
+    "description": "Audits Microsoft.Web/sites where properties.httpsOnly is false. Mirrors azure/arg/AZ-07.kql. Known false positive: internal-only apps behind a TLS-terminating front door where httpsOnly adds nothing.",
+    "mode": "Indexed",
+    "metadata": {
+      "category": "App Service",
+      "detectionId": "AZ-07",
+      "severity": "medium",
+      "version": "1.0.0"
+    },
+    "parameters": {},
+    "policyRule": {
+      "if": {
+        "allOf": [
+          { "field": "type", "equals": "Microsoft.Web/sites" },
+          { "field": "properties.httpsOnly", "equals": false }
+        ]
+      },
+      "then": { "effect": "audit" }
+    }
+  }
+}

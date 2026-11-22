@@ -1,0 +1,11 @@
+Resources
+| where type == "microsoft.network/networksecuritygroups"
+| mvexpand rule = properties.securityRules
+| where rule.direction == "Inbound"
+| where rule.access == "Allow"
+| where rule.destinationPortRange in ("22", "3389")
+| where rule.sourceAddressPrefix == "0.0.0.0/0"
+   or "0.0.0.0/0" in (rule.sourceAddressPrefixes or dynamic([]))
+   or "*" in (rule.sourceAddressPrefixes or dynamic([]))
+| project id, name, ruleName = rule.name, rule.sourceAddressPrefix, rule.destinationPortRange
+| order by id asc, ruleName asc

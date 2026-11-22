@@ -1,0 +1,26 @@
+{
+  "properties": {
+    "displayName": "[AZ-05] Audit audit-relevant resources missing a diagnostic setting",
+    "description": "Lists Microsoft.Storage/storageAccounts, Microsoft.KeyVault/vaults, Microsoft.Sql/servers and Microsoft.EventHub/namespaces that lack an attached diagnostic setting — the cross-resource absence check is reproduced against fixtures by run.py rather than expressed in a single-resource policy rule. Mirrors azure/arg/AZ-05.kql.",
+    "mode": "Indexed",
+    "metadata": {
+      "category": "Monitoring",
+      "detectionId": "AZ-05",
+      "severity": "medium",
+      "version": "1.0.0"
+    },
+    "parameters": {},
+    "policyRule": {
+      "if": {
+        "field": "type",
+        "in": [
+          "Microsoft.Storage/storageAccounts",
+          "Microsoft.KeyVault/vaults",
+          "Microsoft.Sql/servers",
+          "Microsoft.EventHub/namespaces"
+        ]
+      },
+      "then": { "effect": "audit" }
+    }
+  }
+}

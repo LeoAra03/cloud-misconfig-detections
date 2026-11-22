@@ -1,0 +1,5 @@
+Resources
+| where type == "microsoft.sql/servers"
+| where properties.publicNetworkAccess == "Enabled"
+| project id, name, properties.publicNetworkAccess
+| order by name asc

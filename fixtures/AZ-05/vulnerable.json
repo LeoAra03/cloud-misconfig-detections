@@ -1,0 +1,15 @@
+{
+  "detection": "AZ-05",
+  "cloud": "azure",
+  "title": "Audit-relevant resource without diagnostic setting",
+  "resources": [
+    {
+      "type": "Microsoft.Storage/storageaccounts",
+      "name": "storagelogs",
+      "id": "/subscriptions/44444444-4444-4444-4444-444444444444/resourceGroups/rg-prod/providers/Microsoft.Storage/storageaccounts/storagelogs",
+      "properties": {
+        "allowBlobPublicAccess": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "properties": {
+    "displayName": "[AZ-06] Audit public IP addresses attached to VMs",
+    "description": "Audits Microsoft.Network/publicIPAddresses with a public ipAddress. The NIC-to-NSG correlation is a cross-resource check reproduced against fixtures by run.py (azure/arg/AZ-06.kql). Known false positive: VMs behind Azure Firewall — a deliberate miss; firewall presence is a separate detection.",
+    "mode": "Indexed",
+    "metadata": {
+      "category": "Network",
+      "detectionId": "AZ-06",
+      "severity": "high",
+      "version": "1.0.0"
+    },
+    "parameters": {},
+    "policyRule": {
+      "if": {
+        "allOf": [
+          { "field": "type", "equals": "Microsoft.Network/publicIPAddresses" },
+          { "field": "properties.ipAddress", "notEquals": "" }
+        ]
+      },
+      "then": { "effect": "audit" }
+    }
+  }
+}

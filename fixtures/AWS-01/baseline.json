@@ -1,0 +1,19 @@
+{
+  "detection": "AWS-01",
+  "cloud": "aws",
+  "title": "S3 Block Public Access partially disabled",
+  "resources": [
+    {
+      "resourceType": "AWS::S3::AccountPublicAccessBlock",
+      "resourceId": "account-public-access-block",
+      "awsRegion": "us-east-1",
+      "accountId": "123456789012",
+      "configuration": {
+        "BlockPublicAcls": true,
+        "IgnorePublicAcls": true,
+        "BlockPublicPolicy": true,
+        "RestrictPublicBuckets": true
+      }
+    }
+  ]
+}

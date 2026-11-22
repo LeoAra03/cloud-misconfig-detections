@@ -1,0 +1,23 @@
+{
+  "properties": {
+    "displayName": "[AZ-09] Audit VMs using managed disks without a disk encryption set",
+    "description": "Audits Microsoft.Compute/virtualMachines whose OS managed disk lacks a disk encryption set id — the null-check on diskEncryptionSet.id is reproduced against fixtures by run.py (azure/arg/AZ-09.kql). Known false positive: dev/test VMs where platform default encryption suffices (non-production scope).",
+    "mode": "Indexed",
+    "metadata": {
+      "category": "Compute",
+      "detectionId": "AZ-09",
+      "severity": "low",
+      "version": "1.0.0"
+    },
+    "parameters": {},
+    "policyRule": {
+      "if": {
+        "allOf": [
+          { "field": "type", "equals": "Microsoft.Compute/virtualMachines" },
+          { "field": "properties.storageProfile.osDisk.managedDisk.storageAccountType", "in": ["Premium_LRS", "StandardSSD_LRS", "Standard_LRS", "UltraSSD_LRS"] }
+        ]
+      },
+      "then": { "effect": "audit" }
+    }
+  }
+}
