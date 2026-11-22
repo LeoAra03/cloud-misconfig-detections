@@ -1,0 +1,5 @@
+Resources
+| where type == "microsoft.storage/storageaccounts"
+| where properties.allowBlobPublicAccess == true
+| project id, name, properties.allowBlobPublicAccess
+| order by name asc

@@ -1,0 +1,28 @@
+{
+  "detection": "AWS-03",
+  "cloud": "aws",
+  "title": "IAM policy action * on resource *",
+  "resources": [
+    {
+      "resourceType": "AWS::IAM::Policy",
+      "resourceId": "AdminEverything",
+      "awsRegion": "us-east-1",
+      "accountId": "123456789012",
+      "configuration": {
+        "policyName": "AdminEverything",
+        "arn": "arn:aws:iam::123456789012:policy/AdminEverything",
+        "attachmentCount": 4,
+        "policyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": "*",
+              "Resource": "*"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

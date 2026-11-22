@@ -1,0 +1,26 @@
+{
+  "properties": {
+    "displayName": "[AZ-03] Audit managed identities with Owner or Contributor at subscription scope",
+    "description": "Audits Microsoft.Authorization/roleAssignments where a ServicePrincipal holds the Owner or Contributor role definition at subscription scope. Mirrors azure/arg/AZ-03.kql. Known false positive: break-glass service principals onboarded with Owner at subscription scope — treat as time-bound, documented exemptions.",
+    "mode": "Indexed",
+    "metadata": {
+      "category": "RBAC",
+      "detectionId": "AZ-03",
+      "severity": "high",
+      "version": "1.0.0"
+    },
+    "parameters": {},
+    "policyRule": {
+      "if": {
+        "allOf": [
+          { "field": "type", "equals": "Microsoft.Authorization/roleAssignments" },
+          { "field": "properties.principalType", "equals": "ServicePrincipal" },
+          { "field": "properties.roleDefinitionId", "like": "*Microsoft.Authorization/roleDefinitions/8e3af657-a8ff-443c-a75c-2fe8c4bcb635*" },
+          { "field": "properties.roleDefinitionId", "like": "*Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c*" },
+          { "field": "properties.scope", "like": "/subscriptions/*" }
+        ]
+      },
+      "then": { "effect": "audit" }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "properties": {
+    "displayName": "[AZ-01] Audit storage accounts that allow public blob access",
+    "description": "Audits Microsoft.Storage/storageAccounts where properties.allowBlobPublicAccess is true. Mirrors azure/arg/AZ-01.kql. Known false positive: static-site storage accounts intentionally allow public blob access — exclude by assignment scope rather than editing the rule.",
+    "mode": "Indexed",
+    "metadata": {
+      "category": "Storage",
+      "detectionId": "AZ-01",
+      "severity": "high",
+      "version": "1.0.0"
+    },
+    "parameters": {},
+    "policyRule": {
+      "if": {
+        "allOf": [
+          { "field": "type", "equals": "Microsoft.Storage/storageAccounts" },
+          { "field": "properties.allowBlobPublicAccess", "equals": true }
+        ]
+      },
+      "then": { "effect": "audit" }
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "detection": "AZ-02",
+  "cloud": "azure",
+  "title": "NSG rule 0.0.0.0/0 on 22 or 3389",
+  "resources": [
+    {
+      "type": "Microsoft.Network/networkSecurityGroups",
+      "name": "nsg-jumphost",
+      "id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-prod/providers/Microsoft.Network/networkSecurityGroups/nsg-jumphost",
+      "properties": {
+        "securityRules": [
+          {
+            "name": "AllowSSH-JumpHost",
+            "direction": "Inbound",
+            "access": "Allow",
+            "priority": 100,
+            "sourceAddressPrefix": "0.0.0.0/0",
+            "destinationPortRange": "22",
+            "protocol": "Tcp",
+            "exempted": true,
+            "exemption": "Jump-host access documented in JT-442; intentionally broad source."
+          },
+          {
+            "name": "AllowHTTPS-In",
+            "direction": "Inbound",
+            "access": "Allow",
+            "priority": 200,
+            "sourceAddressPrefix": "10.0.0.0/8",
+            "destinationPortRange": "443",
+            "protocol": "Tcp"
+          }
+        ]
+      }
+    }
+  ]
+}

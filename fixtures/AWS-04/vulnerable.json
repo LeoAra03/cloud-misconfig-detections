@@ -1,0 +1,19 @@
+{
+  "detection": "AWS-04",
+  "cloud": "aws",
+  "title": "Root account without MFA",
+  "resources": [
+    {
+      "resourceType": "AWS::IAM::AccountSummary",
+      "resourceId": "root-account-summary",
+      "awsRegion": "us-east-1",
+      "accountId": "123456789012",
+      "configuration": {
+        "root": {
+          "mfaEnabled": false
+        },
+        "virtualMFADevices": []
+      }
+    }
+  ]
+}

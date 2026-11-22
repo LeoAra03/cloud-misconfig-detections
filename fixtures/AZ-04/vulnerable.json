@@ -1,0 +1,17 @@
+{
+  "detection": "AZ-04",
+  "cloud": "azure",
+  "title": "Key Vault enableSoftDelete false",
+  "resources": [
+    {
+      "type": "Microsoft.KeyVault/vaults",
+      "name": "kv-prod",
+      "id": "/subscriptions/33333333-3333-3333-3333-333333333333/resourceGroups/rg-prod/providers/Microsoft.KeyVault/vaults/kv-prod",
+      "properties": {
+        "enableSoftDelete": false,
+        "enablePurgeProtection": false,
+        "vaultUri": "https://kv-prod.vault.azure.net/"
+      }
+    }
+  ]
+}

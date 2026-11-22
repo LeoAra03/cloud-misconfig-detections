@@ -1,0 +1,23 @@
+{
+  "properties": {
+    "displayName": "[AZ-04] Audit Key Vault vaults with soft delete disabled",
+    "description": "Audits Microsoft.KeyVault/vaults where properties.enableSoftDelete is false. Mirrors azure/arg/AZ-04.kql. Known false positive: vaults holding only ephemeral cache data where key recovery is not required.",
+    "mode": "Indexed",
+    "metadata": {
+      "category": "Key Vault",
+      "detectionId": "AZ-04",
+      "severity": "medium",
+      "version": "1.0.0"
+    },
+    "parameters": {},
+    "policyRule": {
+      "if": {
+        "allOf": [
+          { "field": "type", "equals": "Microsoft.KeyVault/vaults" },
+          { "field": "properties.enableSoftDelete", "equals": false }
+        ]
+      },
+      "then": { "effect": "audit" }
+    }
+  }
+}

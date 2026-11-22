@@ -1,0 +1,19 @@
+{
+  "configRuleName": "AWS-03-iam-policy-star-on-star",
+  "description": "Flags customer-managed IAM policies granting Action * on Resource *. AWS-managed policies (arn:aws:iam::aws:policy/*) are excluded because the customer cannot edit them — see README known false positives. AttachmentCount is reported in the finding for context.",
+  "scope": {
+    "complianceResourceTypes": ["AWS::IAM::Policy"]
+  },
+  "source": {
+    "owner": "CUSTOM_LAMBDA",
+    "sourceIdentifier": "arn:aws:lambda:us-east-1:123456789012:function:aws-03-iam-star-check",
+    "sourceDetails": [
+      { "eventSource": "aws.config", "messageType": "ConfigurationItemChangeNotification" }
+    ]
+  },
+  "inputParameters": {
+    "excludeArnPrefix": "arn:aws:iam::aws:policy/"
+  },
+  "detectionId": "AWS-03",
+  "severity": "high"
+}

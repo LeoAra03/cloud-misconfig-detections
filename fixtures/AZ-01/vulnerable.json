@@ -1,0 +1,16 @@
+{
+  "detection": "AZ-01",
+  "cloud": "azure",
+  "title": "Storage account allowBlobPublicAccess true",
+  "resources": [
+    {
+      "type": "Microsoft.Storage/storageAccounts",
+      "name": "storagepublic",
+      "id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg-prod/providers/Microsoft.Storage/storageAccounts/storagepublic",
+      "properties": {
+        "allowBlobPublicAccess": true,
+        "isHnsEnabled": true
+      }
+    }
+  ]
+}

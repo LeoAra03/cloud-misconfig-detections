@@ -1,0 +1,19 @@
+{
+  "configRuleName": "AWS-05-cloudtrail-multi-region-enabled",
+  "description": "Flags CloudTrail trails where isMultiRegionTrail is false. Mirrors detection AWS-05 (medium). Known false positive: single-region workloads where a multi-region trail adds cost without benefit — explicit downgrade path in docs/rubric.md.",
+  "scope": {
+    "complianceResourceTypes": ["AWS::CloudTrail::Trail"]
+  },
+  "source": {
+    "owner": "CUSTOM_LAMBDA",
+    "sourceIdentifier": "arn:aws:lambda:us-east-1:123456789012:function:aws-05-cloudtrail-multiregion-check",
+    "sourceDetails": [
+      { "eventSource": "aws.config", "messageType": "ConfigurationItemChangeNotification" }
+    ]
+  },
+  "inputParameters": {
+    "requireMultiRegion": true
+  },
+  "detectionId": "AWS-05",
+  "severity": "medium"
+}

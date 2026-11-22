@@ -1,0 +1,18 @@
+let auditRelevant = dynamic([
+  "microsoft.storage/storageaccounts",
+  "microsoft.keyvault/vaults",
+  "microsoft.sql/servers",
+  "microsoft.eventhub/namespaces",
+]);
+Resources
+| where type in (auditRelevant)
+| extend resourceIdLower = tolower(id)
+| join kind=leftouter (
+    Resources
+    | where type == "microsoft.insights/diagnosticsettings"
+    | summarize diagnosticCount = count()
+      by targetResourceIdLower = tolower(properties.targetResourceId)
+) on $left.resourceIdLower == $right.targetResourceIdLower
+| where isempty(diagnosticCount) or diagnosticCount == 0
+| project id, name, type
+| order by id asc

@@ -1,0 +1,5 @@
+Resources
+| where type == "microsoft.web/sites"
+| where properties.httpsOnly == false
+| project id, name, properties.httpsOnly, properties.hostNames
+| order by name asc

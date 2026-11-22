@@ -1,0 +1,49 @@
+{
+  "detection": "AWS-03",
+  "cloud": "aws",
+  "title": "IAM policy action * on resource *",
+  "resources": [
+    {
+      "resourceType": "AWS::IAM::Policy",
+      "resourceId": "AdministratorAccess",
+      "awsRegion": "us-east-1",
+      "accountId": "123456789012",
+      "configuration": {
+        "policyName": "AdministratorAccess",
+        "arn": "arn:aws:iam::aws:policy/AdministratorAccess",
+        "attachmentCount": 12,
+        "policyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": "*",
+              "Resource": "*"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "resourceType": "AWS::IAM::Policy",
+      "resourceId": "ReadOnlyS3",
+      "awsRegion": "us-east-1",
+      "accountId": "123456789012",
+      "configuration": {
+        "policyName": "ReadOnlyS3",
+        "arn": "arn:aws:iam::123456789012:policy/ReadOnlyS3",
+        "attachmentCount": 1,
+        "policyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": ["s3:GetObject"],
+              "Resource": ["arn:aws:s3:::corp-bucket/*"]
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

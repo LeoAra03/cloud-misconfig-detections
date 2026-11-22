@@ -1,0 +1,20 @@
+{
+  "configRuleName": "AWS-02-restricted-ssh-rdp-ingress",
+  "description": "Flags security groups with ingress 0.0.0.0/0 on TCP/22 or TCP/3389. Mirrors detection AWS-02 (high). AWS-managed alternative: restricted-common-ports. Known false positive: bastion/jump security groups with broad SSH for incident access — exemption, not rule change.",
+  "scope": {
+    "complianceResourceTypes": ["AWS::EC2::SecurityGroup"]
+  },
+  "source": {
+    "owner": "CUSTOM_LAMBDA",
+    "sourceIdentifier": "arn:aws:lambda:us-east-1:123456789012:function:aws-02-open-ssh-rdp-check",
+    "sourceDetails": [
+      { "eventSource": "aws.config", "messageType": "ConfigurationItemChangeNotification" }
+    ]
+  },
+  "inputParameters": {
+    "ports": "22,3389",
+    "cidr": "0.0.0.0/0"
+  },
+  "detectionId": "AWS-02",
+  "severity": "high"
+}

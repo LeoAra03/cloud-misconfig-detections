@@ -1,0 +1,16 @@
+{
+  "configRuleName": "AWS-04-root-account-mfa-enabled",
+  "description": "Flags AWS accounts where the root user has no MFA device enabled. Mirrors detection AWS-04 (high). Evaluated out of band from IAM account summary / virtual MFA devices; Config snapshot delivery acts as the trigger. Known false positive: accounts accessed exclusively through federated identity with destroyed root credentials.",
+  "scope": {},
+  "source": {
+    "owner": "CUSTOM_LAMBDA",
+    "sourceIdentifier": "arn:aws:lambda:us-east-1:123456789012:function:aws-04-root-mfa-check",
+    "sourceDetails": [
+      { "eventSource": "aws.config", "messageType": "ConfigurationSnapshotDeliveryCompleted" }
+    ]
+  },
+  "maximumExecutionFrequency": "TwentyFour_Hours",
+  "inputParameters": {},
+  "detectionId": "AWS-04",
+  "severity": "high"
+}

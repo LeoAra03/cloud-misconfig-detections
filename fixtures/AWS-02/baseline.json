@@ -1,0 +1,24 @@
+{
+  "detection": "AWS-02",
+  "cloud": "aws",
+  "title": "Security group ingress 0.0.0.0/0 on 22 or 3389",
+  "resources": [
+    {
+      "resourceType": "AWS::EC2::SecurityGroup",
+      "resourceId": "sg-web",
+      "awsRegion": "us-east-1",
+      "accountId": "123456789012",
+      "configuration": {
+        "groupName": "web-sg",
+        "ipPermissions": [
+          {
+            "ipProtocol": "tcp",
+            "fromPort": 22,
+            "toPort": 22,
+            "ipRanges": [ { "cidrIp": "10.0.0.0/8" } ]
+          }
+        ]
+      }
+    }
+  ]
+}

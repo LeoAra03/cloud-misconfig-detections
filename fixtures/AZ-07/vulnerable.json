@@ -1,0 +1,16 @@
+{
+  "detection": "AZ-07",
+  "cloud": "azure",
+  "title": "App Service httpsOnly false",
+  "resources": [
+    {
+      "type": "Microsoft.Web/sites",
+      "name": "svc-api",
+      "id": "/subscriptions/66666666-6666-6666-6666-666666666666/resourceGroups/rg-prod/providers/Microsoft.Web/sites/svc-api",
+      "properties": {
+        "httpsOnly": false,
+        "hostNames": [ "svc-api.azurewebsites.net" ]
+      }
+    }
+  ]
+}

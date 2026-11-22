@@ -1,0 +1,20 @@
+{
+  "detection": "AWS-05",
+  "cloud": "aws",
+  "title": "CloudTrail multi-region disabled",
+  "resources": [
+    {
+      "resourceType": "AWS::CloudTrail::Trail",
+      "resourceId": "org-trail",
+      "awsRegion": "us-east-1",
+      "accountId": "123456789012",
+      "configuration": {
+        "name": "org-trail",
+        "isLogging": true,
+        "isMultiRegionTrail": false,
+        "s3BucketName": "corp-cloudtrail",
+        "includeGlobalServiceEvents": true
+      }
+    }
+  ]
+}
